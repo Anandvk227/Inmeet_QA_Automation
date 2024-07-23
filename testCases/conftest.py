@@ -144,12 +144,12 @@ def pytest_runtest_makereport(item, call):
                     with open(recording_path, "rb") as video_file:
                         encoded_video = base64.b64encode(video_file.read()).decode()
                     html = f'''
-                                   <div style="margin-top: 10px;">
-                                       <a href="data:video/mp4;base64,{encoded_video}" target="_blank" style="display: flex; align-items: center; text-decoration: none;">
-                                           <img src="https://img.icons8.com/fluency/48/000000/video.png" alt="Play Video" style="width:30px;height:30px;margin-right:10px;"/>
-                                           <span style="font-size: 14px; text-decoration: underline; color: red;">View Video</span>
-                                       </a>
-                                   </div>'''
+                        <div style="margin-top: 10px;">
+                            <video width="320" height="240" controls autoplay>
+                                <source src="data:video/mp4;base64,{encoded_video}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>'''
                     extra.append(pytest_html.extras.html(html))
 
             recording_path = getattr(item, 'recording_path', None)
@@ -163,13 +163,13 @@ def pytest_runtest_makereport(item, call):
                     encoded_zip = base64.b64encode(zip_file.read()).decode()
 
                 download_link = f'''
-                                <div style="position: absolute; top: 15px; right: 15px;">
-                                    <a href="data:application/zip;base64,{encoded_zip}" download="{test_name}_report.zip" style="color: blue;">
-                                        <img src="https://img.icons8.com/?size=30&id=110690&format=png&color=FFAA00" alt="Download Icon" style="vertical-align: middle;" />
-                                        Download Report
-                                    </a>
-                                </div>
-                                '''
+                    <div style="position: absolute; top: 15px; right: 15px;">
+                        <a href="data:application/zip;base64,{encoded_zip}" download="{test_name}_report.zip" style="color: blue;">
+                            <img src="https://img.icons8.com/?size=30&id=110690&format=png&color=FFAA00" alt="Download Icon" style="vertical-align: middle;" />
+                            Download Report
+                        </a>
+                    </div>
+                '''
                 extra.append(pytest_html.extras.html(download_link))
 
         report.extra = extra

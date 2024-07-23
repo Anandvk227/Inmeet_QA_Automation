@@ -34,6 +34,6 @@ class TestLogin:
         lp = LoginPage(driver)
         self.logger.info("Entering SuperAdmin Credentials for login Username:" + self.username + " and Password:" + self.password)
         lp.setUserName(self.username)
-        # lp.setPassword(self.password)
-        lp.clickLogin()
+        lp.setPassword(self.password)
+        # lp.clickLogin()
         lp.clickJoinMeeting()

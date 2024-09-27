@@ -46,3 +46,8 @@ class LoginPage:
         element = wait.until(EC.visibility_of_element_located((By.XPATH, self.button_JoinMeeting_xpath)))
         element.click()
 
+    # def clickJoinMeetingq(self):
+    #     wait = WebDriverWait(self.driver, 10)
+    #     element = wait.until(EC.visibility_of_element_located((By.XPATH, self.button_JoinMeeting_xpath)))
+    #     element.click()
+
